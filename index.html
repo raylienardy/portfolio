@@ -15,6 +15,44 @@
     <link rel="stylesheet" href="fonts/fontawesome/sharp-regular.css" />
     <link rel="stylesheet" href="fonts/fontawesome/sharp-light.css" />
     <link rel="stylesheet" href="fonts/fontawesome/duotone.css" />
+
+    <!-- Style Switcher -->
+    <link
+      rel="stylesheet"
+      href="css/skins/color-1.css"
+      class="alternate-style"
+      title="color-1"
+      disabled
+    />
+    <link
+      rel="stylesheet"
+      href="css/skins/color-2.css"
+      class="alternate-style"
+      title="color-2"
+      disabled
+    />
+    <link
+      rel="stylesheet"
+      href="css/skins/color-3.css"
+      class="alternate-style"
+      title="color-3"
+      disabled
+    />
+    <link
+      rel="stylesheet"
+      href="css/skins/color-4.css"
+      class="alternate-style"
+      title="color-4"
+      disabled
+    />
+    <link
+      rel="stylesheet"
+      href="css/skins/color-5.css"
+      class="alternate-style"
+      title="color-5"
+      disabled
+    />
+    <link rel="stylesheet" href="css/style-switcher.css" />
   </head>
   <body>
     <!-- Start - Main Container -->
@@ -29,19 +67,19 @@
         </div>
         <ul class="nav">
           <li>
-            <a href="#" class="active"><i class="fa fa-home"></i> Home</a>
+            <a href="#home" class="active"><i class="fa fa-home"></i> Home</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-user"></i> About</a>
+            <a href="#about"><i class="fa fa-user"></i> About</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-list"></i> Service</a>
+            <a href="#services"><i class="fa fa-list"></i> Services</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-briefcase"></i> Portfolio</a>
+            <a href="#portfolio"><i class="fa fa-briefcase"></i> Portfolio</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-comments"></i> Contact</a>
+            <a href="#contact"><i class="fa fa-comments"></i> Contact</a>
           </li>
         </ul>
       </div>
@@ -49,7 +87,7 @@
       <!-- Start - Main Content -->
       <div class="main-content">
         <!-- Start - Home Section -->
-        <section class="home section">
+        <section class="home section" id="home">
           <div class="container">
             <div class="row">
               <div class="home-info padd-15">
@@ -57,7 +95,7 @@
                   Hello, my name is <span class="name">Alphocado</span>
                 </h3>
                 <h3 class="my-profession">
-                  I'm a <span class="typing">web designer</span>
+                  I'm a <span class="typing">Web Designer</span>
                 </h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde,
@@ -73,7 +111,7 @@
         </section>
         <!-- End - Home Section -->
         <!-- Start - About Section -->
-        <section class="about section">
+        <section class="about section" id="about">
           <div class="container">
             <div class="row">
               <div class="section-title padd-15">
@@ -180,7 +218,7 @@
                             <h4 class="timeline-title">
                               Master in Computer Science
                             </h4>
-                            <p class="timeline-next">
+                            <p class="timeline-text">
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Neque officia consectetur vitae quas quasi
                               placeat eaque saepe ut, velit repudiandae
@@ -196,7 +234,7 @@
                             <h4 class="timeline-title">
                               Master in Computer Science
                             </h4>
-                            <p class="timeline-next">
+                            <p class="timeline-text">
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Neque officia consectetur vitae quas quasi
                               placeat eaque saepe ut, velit repudiandae
@@ -223,7 +261,7 @@
                             <h4 class="timeline-title">
                               Master in Computer Science
                             </h4>
-                            <p class="timeline-next">
+                            <p class="timeline-text">
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Neque officia consectetur vitae quas quasi
                               placeat eaque saepe ut, velit repudiandae
@@ -239,7 +277,7 @@
                             <h4 class="timeline-title">
                               Master in Computer Science
                             </h4>
-                            <p class="timeline-next">
+                            <p class="timeline-text">
                               Lorem ipsum dolor sit amet consectetur adipisicing
                               elit. Neque officia consectetur vitae quas quasi
                               placeat eaque saepe ut, velit repudiandae
@@ -259,7 +297,7 @@
         </section>
         <!-- End - About Section -->
         <!-- Start - Services Section -->
-        <section class="service section">
+        <section class="service section" id="service">
           <div class="container">
             <div class="row">
               <div class="section-title padd-15">
@@ -356,7 +394,7 @@
         </section>
         <!-- End - Services Section -->
         <!-- Start - Portfolio Section -->
-        <section class="portfolio section">
+        <section class="portfolio section" id="portofolio">
           <div class="container">
             <div class="row">
               <div class="section-title padd-15">
@@ -428,7 +466,7 @@
         </section>
         <!-- End - Portfolio Section -->
         <!-- Start - Contact Section -->
-        <section class="contact section">
+        <section class="contact section" id="contact">
           <div class="container">
             <div class="row">
               <div class="section-title padd-15">
@@ -533,7 +571,32 @@
     </div>
     <!-- End - Main Container -->
 
-    <!-- JS -->
+    <!-- Start - Style Switcher -->
+    <div class="style-switcher">
+      <div class="style-switcher-toggler s-icon">
+        <i class="fas fa-cog fa-spin"></i>
+      </div>
+      <div class="day-night s-icon">
+        <i class="fas fa-moon"></i>
+      </div>
+      <h4>Theme Colors</h4>
+      <div class="colors">
+        <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+        <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+        <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+        <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+        <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+      </div>
+    </div>
+    <!-- End - Style Switcher -->
+
+    <!-- Start - JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="js/script.js"></script>
+    <script src="js/style-switcher.js"></script>
+    <!-- End - JS -->
   </body>
 </html>
