@@ -51,10 +51,10 @@ function smoothScrollTo(targetY, duration) {
       document.documentElement.scrollHeight - window.innerHeight,
     ),
   );
-  // if (prefersReducedMotion()) {
-  //   window.scrollTo(0, clamped);
-  //   return;
-  // }
+  if (prefersReducedMotion()) {
+    window.scrollTo(0, clamped);
+    return;
+  }
   cancelScrollAnimation();
   const startY = window.scrollY || window.pageYOffset;
   const diff = clamped - startY;
@@ -96,10 +96,23 @@ function smoothScrollTo(targetY, duration) {
   );
 });
 
-navLinks.forEach(function (link) {
+const internalLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
+internalLinks.forEach(function (link) {
   link.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
-    if (!href || !href.startsWith("#") || href === "#") return;
+    if (!href || !href.startsWith("#")) return;
+    if (href === "#") {
+      e.preventDefault();
+      smoothScrollTo(0, 550);
+      try {
+        history.pushState(null, "", href);
+      } catch (err) {}
+      if (this.closest(".nav") && aside && aside.classList.contains("open")) {
+        aside.classList.remove("open");
+        if (navTogglerBtn) navTogglerBtn.classList.remove("open");
+      }
+      return;
+    }
     const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
@@ -110,7 +123,7 @@ navLinks.forEach(function (link) {
     try {
       history.pushState(null, "", href);
     } catch (err) {}
-    if (aside && aside.classList.contains("open")) {
+    if (this.closest(".nav") && aside && aside.classList.contains("open")) {
       aside.classList.remove("open");
       if (navTogglerBtn) navTogglerBtn.classList.remove("open");
     }
@@ -159,45 +172,3 @@ if (sections.length > 0 && navLinks.length > 0) {
   window.addEventListener("resize", onScroll);
   updateActive();
 }
-
-// Ambil semua link internal (sidebar, tombol, logo, dll)
-const internalLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
-
-internalLinks.forEach(function (link) {
-  link.addEventListener("click", function (e) {
-    const href = this.getAttribute("href");
-
-    // href="#" → scroll ke paling atas
-    if (href === "#") {
-      e.preventDefault();
-      smoothScrollTo(0, 550);
-      try {
-        history.pushState(null, "", href);
-      } catch (err) {}
-      if (aside && aside.classList.contains("open")) {
-        aside.classList.remove("open");
-        if (navTogglerBtn) navTogglerBtn.classList.remove("open");
-      }
-      return;
-    }
-
-    const target = document.querySelector(href);
-    if (!target) return;
-    e.preventDefault();
-
-    const targetY =
-      target.getBoundingClientRect().top +
-      (window.scrollY || window.pageYOffset);
-    smoothScrollTo(targetY, 550);
-
-    try {
-      history.pushState(null, "", href);
-    } catch (err) {}
-
-    // Tutup sidebar hanya kalau yang diklik adalah link di menu nav
-    if (this.closest(".nav") && aside && aside.classList.contains("open")) {
-      aside.classList.remove("open");
-      if (navTogglerBtn) navTogglerBtn.classList.remove("open");
-    }
-  });
-});
