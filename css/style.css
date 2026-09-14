@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Clicker+Script&display=swap");
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -295,10 +295,24 @@ ul {
   border-bottom: 1px solid var(--bg-black-50);
   color: var(--text-black-900);
   padding: 5px 15px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .aside .nav li a.active {
   color: var(--skin-color);
+  padding-left: 25px;
+}
+
+.aside .nav li a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 15px;
+  background: var(--skin-color);
 }
 
 .aside .nav li a i {
