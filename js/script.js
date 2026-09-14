@@ -44,11 +44,17 @@ function easeInOutCubic(t) {
 
 function smoothScrollTo(targetY, duration) {
   if (duration === undefined) duration = 550;
-  const clamped = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
-  if (prefersReducedMotion()) {
-    window.scrollTo(0, clamped);
-    return;
-  }
+  const clamped = Math.max(
+    0,
+    Math.min(
+      targetY,
+      document.documentElement.scrollHeight - window.innerHeight,
+    ),
+  );
+  // if (prefersReducedMotion()) {
+  //   window.scrollTo(0, clamped);
+  //   return;
+  // }
   cancelScrollAnimation();
   const startY = window.scrollY || window.pageYOffset;
   const diff = clamped - startY;
@@ -69,13 +75,25 @@ function smoothScrollTo(targetY, duration) {
 }
 
 ["wheel", "keydown"].forEach(function (evt) {
-  window.addEventListener(evt, function (e) {
-    if (e.type === "keydown") {
-      const keys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "];
-      if (keys.indexOf(e.key) === -1) return;
-    }
-    cancelScrollAnimation();
-  }, { passive: true });
+  window.addEventListener(
+    evt,
+    function (e) {
+      if (e.type === "keydown") {
+        const keys = [
+          "ArrowUp",
+          "ArrowDown",
+          "PageUp",
+          "PageDown",
+          "Home",
+          "End",
+          " ",
+        ];
+        if (keys.indexOf(e.key) === -1) return;
+      }
+      cancelScrollAnimation();
+    },
+    { passive: true },
+  );
 });
 
 navLinks.forEach(function (link) {
@@ -85,7 +103,9 @@ navLinks.forEach(function (link) {
     const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
-    const targetY = target.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+    const targetY =
+      target.getBoundingClientRect().top +
+      (window.scrollY || window.pageYOffset);
     smoothScrollTo(targetY, 550);
     try {
       history.pushState(null, "", href);
@@ -112,7 +132,10 @@ if (sections.length > 0 && navLinks.length > 0) {
         break;
       }
     }
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+    if (
+      window.scrollY + window.innerHeight >=
+      document.documentElement.scrollHeight - 2
+    ) {
       activeId = sections[sections.length - 1].id;
     }
     if (activeId !== currentActive) {
@@ -136,3 +159,45 @@ if (sections.length > 0 && navLinks.length > 0) {
   window.addEventListener("resize", onScroll);
   updateActive();
 }
+
+// Ambil semua link internal (sidebar, tombol, logo, dll)
+const internalLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
+
+internalLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    const href = this.getAttribute("href");
+
+    // href="#" → scroll ke paling atas
+    if (href === "#") {
+      e.preventDefault();
+      smoothScrollTo(0, 550);
+      try {
+        history.pushState(null, "", href);
+      } catch (err) {}
+      if (aside && aside.classList.contains("open")) {
+        aside.classList.remove("open");
+        if (navTogglerBtn) navTogglerBtn.classList.remove("open");
+      }
+      return;
+    }
+
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+
+    const targetY =
+      target.getBoundingClientRect().top +
+      (window.scrollY || window.pageYOffset);
+    smoothScrollTo(targetY, 550);
+
+    try {
+      history.pushState(null, "", href);
+    } catch (err) {}
+
+    // Tutup sidebar hanya kalau yang diklik adalah link di menu nav
+    if (this.closest(".nav") && aside && aside.classList.contains("open")) {
+      aside.classList.remove("open");
+      if (navTogglerBtn) navTogglerBtn.classList.remove("open");
+    }
+  });
+});
