@@ -36,6 +36,22 @@ a:visited {
   top: 0;
 }
 
+:focus-visible {
+  outline: 2px solid var(--skin-color);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--skin-color);
+  outline-offset: 3px;
+}
+
+.aside .nav li a:focus-visible {
+  outline-offset: 1px;
+}
+
 :root {
   --bg-black-900: #f2f2fc;
   --bg-black-100: #fdf9ff;
@@ -428,10 +444,11 @@ h2.my-profession {
   }
 }
 .home .home-img img {
-  margin: auto;
+  width: 100%;
+  height: auto;
   max-width: 100%;
   max-height: 520px;
-  height: auto;
+  margin: auto;
   display: block;
   animation:
     fadeInUp 0.8s ease-out 0.2s both,
