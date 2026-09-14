@@ -1,8 +1,40 @@
 /* === Start - Root === */
-/* Poppins */
-@import url("../fonts/googlefonts/poppins.css");
-/* Clicker Script */
-@import url("../fonts/googlefonts/clicker.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Clicker+Script&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--skin-color);
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
 
 :root {
   --bg-black-900: #f2f2fc;
@@ -120,15 +152,22 @@ ul {
 
 .btn {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   padding: 12px 35px;
-  color: white;
+  color: #fff;
   border-radius: 40px;
   display: inline-block;
   white-space: nowrap;
   border: none;
   background: var(--skin-color);
   transition: all 0.3s ease;
+}
+.btn:hover,
+.btn:visited,
+.btn:focus,
+.btn:active {
+  color: #fff;
+  font-weight: 700;
 }
 .btn:hover {
   transform: scale(1.05);
@@ -271,40 +310,75 @@ ul {
 .home {
   min-height: 100vh;
   display: flex;
+  align-items: center;
   color: var(--text-black-900);
 }
 .home .home-info {
   flex: 0 0 60%;
   max-width: 60%;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
 }
-h3.hello {
-  font-size: 28px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+h1.hello {
+  font-size: 48px;
   margin: 15px 0;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeInUp 0.8s ease-out 0.15s both;
 }
-h3.hello span {
+h1.hello span {
   font-family: "Clicker Script", cursive;
   font-size: 30px;
   font-weight: 700;
   color: var(--skin-color);
 }
-h3.my-profession {
-  font-size: 30px;
+h2.my-profession {
+  font-size: 28px;
   margin: 15px 0;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.25s both;
 }
 .typing {
   color: var(--skin-color);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--skin-color);
 }
 .home-info p {
   margin-bottom: 70px;
   font-size: 20px;
   color: var(--text-black-700);
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+.home-info .btn {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  transition: all 0.3s ease;
+}
+.home-info .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(236, 24, 57, 0.2);
 }
 .home .home-img {
   flex: 0 0 40%;
   max-width: 40%;
-  /* background: red; */
   text-align: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 .home-img::after {
   content: "";
@@ -313,8 +387,9 @@ h3.my-profession {
   width: 80px;
   border-bottom: 10px solid var(--skin-color);
   border-right: 10px solid var(--skin-color);
-  right: 20px;
-  bottom: -40px;
+  right: 10px;
+  bottom: 10px;
+  animation: pulseCorner 4s ease-in-out infinite 0.2s;
 }
 .home-img::before {
   content: "";
@@ -323,13 +398,50 @@ h3.my-profession {
   width: 80px;
   border-top: 10px solid var(--skin-color);
   border-left: 10px solid var(--skin-color);
-  left: -20px;
-  top: -40px;
+  left: 10px;
+  top: 10px;
+  animation: pulseCorner 4s ease-in-out infinite;
+}
+@keyframes pulseCorner {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
 }
 .home .home-img img {
   margin: auto;
-  border-radius: 5px;
-  height: 400px;
+  max-width: 100%;
+  max-height: 520px;
+  height: auto;
+  display: block;
+  animation:
+    fadeInUp 0.8s ease-out 0.2s both,
+    float 5s ease-in-out infinite 0.9s;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  h1.hello,
+  h2.my-profession,
+  .home-info p,
+  .home-info .btn,
+  .home .home-img img,
+  .home-img::before,
+  .home-img::after {
+    animation: none;
+  }
 }
 /* === End -  Home ===*/
 
@@ -393,6 +505,22 @@ h3.my-profession {
 .about .about-content .personal-info .buttons .btn {
   margin-right: 15px;
   margin-top: 10px;
+}
+
+.personal-info a:not(.btn) {
+  color: var(--skin-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.personal-info a:not(.btn):visited {
+  color: var(--skin-color);
+}
+
+.personal-info a:not(.btn):hover,
+.personal-info a:not(.btn):focus {
+  color: var(--skin-color);
+  text-decoration: underline;
 }
 
 .about .about-content .skills {
@@ -545,9 +673,10 @@ h3.my-profession {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto 30px;
-  text-align: center;
   transition: all 0.3s ease;
 }
 .service .service-item .service-item-inner .icon .fa {
@@ -596,14 +725,92 @@ h3.my-profession {
   margin-bottom: 30px;
 }
 .portfolio .portfolio-item-inner {
-  border: 6px solid var(--bg-black-100);
+  background: var(--bg-black-100);
+  border: 1px solid var(--bg-black-50);
   border-radius: 10px;
   overflow: hidden;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.portfolio .portfolio-item-inner:hover {
+  box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
+}
+.portfolio .portfolio-item.featured .portfolio-item-inner {
+  border: 2px solid var(--skin-color);
+}
+.badge-featured {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--skin-color);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .portfolio .portfolio-item-inner .portfolio-img img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
   display: block;
+}
+.portfolio .portfolio-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.portfolio .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-black-900);
+  margin-bottom: 8px;
+}
+.portfolio .portfolio-info p {
+  font-size: 14px;
+  color: var(--text-black-700);
+  line-height: 22px;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+.portfolio .portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+.portfolio .portfolio-tags span {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--bg-black-50);
+  color: var(--text-black-900);
+  border-radius: 12px;
+  font-weight: 500;
+}
+.portfolio .portfolio-links {
+  display: flex;
+  gap: 10px;
+}
+.portfolio .portfolio-links .btn-sm {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--skin-color);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+.portfolio .portfolio-links .btn-sm:hover {
+  transform: scale(1.05);
 }
 /* === End - Portfolio === */
 
@@ -646,41 +853,31 @@ h3.my-profession {
   color: var(--text-black-700);
   font-weight: 400;
 }
+.contact .contact-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.contact .contact-link:hover h4,
+.contact .contact-link:hover p {
+  color: var(--skin-color);
+}
+.contact .contact-cta {
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
+}
+.contact .contact-cta .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.contact .contact-cta .btn i {
+  margin-right: 8px;
+}
 .contact .contact-form {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-.contact .contact-form .col-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-.contact .contact-form .col-12 {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
-.contact .contact-form .form-item {
-  margin-bottom: 30px;
-}
-.contact .contact-form .form-item .form-control {
-  width: 100%;
-  height: 50px;
-  border-radius: 25px;
-  background: var(--bg-black-100);
-  border: 1px solid var(--bg-black-50);
-  padding: 10px 25px;
-  font-size: 16px;
-  color: var(--text-black-700);
-  transition: all 0.3s ease;
-}
-.contact .contact-form .form-item .form-control:focus {
-  box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
-}
-.contact .contact-form .form-item textarea.form-control {
-  height: 140px;
-}
-.contact .contact-form .btn {
-  height: 50px;
-  padding: 0 50px;
+  display: none;
 }
 /* === End - Contact === */
 
@@ -688,6 +885,20 @@ h3.my-profession {
 @media (max-width: 1199px) {
   .aside {
     left: -270px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+  }
+  .aside.open {
+    left: 0;
+  }
+  .aside .nav-toggler {
+    display: flex;
+    left: 300px;
+    z-index: 1002;
+    transition: all 0.3s ease;
+  }
+  .aside:not(.open) .nav-toggler {
+    left: 20px;
   }
   .main-content {
     padding-left: 0;
