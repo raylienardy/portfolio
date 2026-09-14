@@ -51,10 +51,10 @@ function smoothScrollTo(targetY, duration) {
       document.documentElement.scrollHeight - window.innerHeight,
     ),
   );
-  if (prefersReducedMotion()) {
-    window.scrollTo(0, clamped);
-    return;
-  }
+  // if (prefersReducedMotion()) {
+  //   window.scrollTo(0, clamped);
+  //   return;
+  // }
   cancelScrollAnimation();
   const startY = window.scrollY || window.pageYOffset;
   const diff = clamped - startY;
