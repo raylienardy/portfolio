@@ -693,7 +693,7 @@ h2.my-profession {
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
   border-radius: 10px;
-  padding: 30px 15px;
+  padding: 24px 18px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -701,30 +701,41 @@ h2.my-profession {
   box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
 }
 .service .service-item .service-item-inner .icon {
-  height: 60px;
-  width: 60px;
+  height: 56px;
+  width: 56px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 30px;
+  margin: 0 auto 18px;
+  color: var(--skin-color);
+  background: rgba(236, 24, 57, 0.12);
+  background: color-mix(in srgb, var(--skin-color) 12%, transparent);
+  border: 1px solid rgba(236, 24, 57, 0.18);
+  border: 1px solid color-mix(in srgb, var(--skin-color) 18%, transparent);
   transition: all 0.3s ease;
 }
-.service .service-item .service-item-inner .icon .fa {
-  font-size: 40px;
-  line-height: 60px;
+.service .service-item .service-item-inner .icon i,
+.service .service-item .service-item-inner .icon svg,
+.service .service-item .service-item-inner .icon .svg-inline--fa {
   color: var(--skin-color);
+  fill: currentColor;
+  font-size: 26px;
 }
 .service .service-item .service-item-inner:hover .icon {
   background: var(--skin-color);
-}
-.service .service-item .service-item-inner:hover .icon .fa {
-  font-size: 25px;
   color: #fff;
+}
+.service .service-item .service-item-inner:hover .icon i,
+.service .service-item .service-item-inner:hover .icon svg,
+.service .service-item .service-item-inner:hover .icon .svg-inline--fa {
+  color: #fff;
+  fill: #fff;
+  font-size: 25px;
 }
 .service .service-item .service-item-inner h4 {
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: var(--text-black-900);
   font-weight: 700;
   text-transform: capitalize;
@@ -732,7 +743,7 @@ h2.my-profession {
 .service .service-item .service-item-inner p {
   font-size: 16px;
   color: var(--text-black-700);
-  line-height: 25px;
+  line-height: 23px;
 }
 /* === End - Service === */
 
@@ -856,20 +867,32 @@ h2.my-profession {
   color: var(--text-black-900);
   text-align: center;
   font-size: 15px;
-  margin-bottom: 60px;
+  margin-bottom: 24px;
 }
 .contact .contact-info-item {
   flex: 0 0 25%;
   max-width: 25%;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 28px;
+  padding: 8px 15px;
 }
 .contact .contact-info-item .icon {
-  display: inline-block;
-}
-.contact .contact-info-item .icon .fa {
-  font-size: 25px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--skin-color);
+  background: rgba(236, 24, 57, 0.1);
+  background: color-mix(in srgb, var(--skin-color) 10%, transparent);
+}
+.contact .contact-info-item .icon i,
+.contact .contact-info-item .icon svg,
+.contact .contact-info-item .icon .svg-inline--fa {
+  color: var(--skin-color);
+  fill: currentColor;
+  font-size: 22px;
 }
 .contact .contact-info-item h4 {
   font-size: 18px;
@@ -897,11 +920,14 @@ h2.my-profession {
   flex: 0 0 100%;
   max-width: 100%;
   text-align: center;
+  margin-top: 8px;
 }
 .contact .contact-cta .buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
   flex-wrap: wrap;
 }
 .contact .contact-cta .btn i {
